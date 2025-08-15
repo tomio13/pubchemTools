@@ -232,9 +232,8 @@ def search(search_string: str ='', search_type: str ='name', what: str ='cids')-
             result= json.loads(a.text)
         else:
             print('call returned:', a.status_code, a.text)
-[branch "main"]
-    remote= origin
-    merge = refs/heads/main
+    # end calling the API for CIDs
+
     if (what == 'cids'
         and not all_what
         and 'IdentifierList' in result
