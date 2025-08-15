@@ -1,0 +1,6 @@
+# pubchem API tools, in another way
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
