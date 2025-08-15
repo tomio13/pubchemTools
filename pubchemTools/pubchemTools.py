@@ -17,9 +17,9 @@ import requests
 
 # some tricks to manipulate the dict tree
 from dictDigUtils import dict_search_in_key
-from . ghs_code import *
+#from . ghs_code import *
 
-__all__ = ['Pubchem', 'get_value']
+__all__ = ['Pubchem', 'get_value', 'get_cid']
 
 
 class Pubchem():
@@ -232,7 +232,9 @@ def search(search_string: str ='', search_type: str ='name', what: str ='cids')-
             result= json.loads(a.text)
         else:
             print('call returned:', a.status_code, a.text)
-
+[branch "main"]
+    remote= origin
+    merge = refs/heads/main
     if (what == 'cids'
         and not all_what
         and 'IdentifierList' in result
@@ -270,6 +272,20 @@ def search(search_string: str ='', search_type: str ='name', what: str ='cids')-
 
     return result
 # end search
+
+
+def get_cid(search_string):
+    """ a shortcut to search, returning the CID of a compound based on
+        name or CAS number.
+
+        Paramter:
+        search_string: text to be searched for, name or CAS number typically
+
+        Return:
+        a list of found Pubchem CIDs
+    """
+    return search(search_string, 'name', 'cids')
+# end get_cid
 
 
 def dig_value(info)->dict:
